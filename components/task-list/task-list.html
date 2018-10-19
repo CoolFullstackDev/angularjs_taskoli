@@ -1,0 +1,65 @@
+<div ng-controller="taskListController">
+    <section layout="row" flex>
+        <md-sidenav id="task_list" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+            <md-content layout-padding ng-controller="LeftCtrl">
+
+                <md-input-container flex id="search_area">
+                    <md-icon>search</md-icon>
+                    <input id="search-input" type="text" ng-model="searchStr" placeholder="Search for Tasks" />
+                </md-input-container>
+                <div layout="row" flex>
+                    <md-content class="tasks-list" flex>
+                        <div id="infinite">
+                            <md-list-item class="md-3-line" md-no-ink ng-repeat="task in tasks | filter: searchStr track by $index" ng-click="clickTaskItem( $index )">
+                                <div class="user_image_wrapper">
+                                    <img ng-src="{{ task.user_photo }}?w=360" class="user-avatar" />
+                                    <span class="user_active_status"></span>
+                                    <p class="user_name">{{ task.username}}</p>
+                                    <div id="user_score" layout="row" layout-align="start center">
+                                        <md-icon md-font-set="material-icons">{{ task.user_rating >= 1 ? "star" : "star_border"}}</md-icon>
+                                        <md-icon md-font-set="material-icons">{{ task.user_rating >= 2 ? "star" : "star_border"}}</md-icon>
+                                        <md-icon md-font-set="material-icons">{{ task.user_rating >= 3 ? "star" : "star_border"}}</md-icon>
+                                        <md-icon md-font-set="material-icons">{{ task.user_rating >= 4 ? "star" : "star_border"}}</md-icon>
+                                        <md-icon md-font-set="material-icons">{{ task.user_rating >= 5 ? "star" : "star_border"}}</md-icon>
+                                    </div>
+                                </div>
+                                <div class="md-list-item-text" layout="column">
+                                    <h3 class="task_title">{{ task.title }}</h3>
+                                    <h4><{{ task.distance }} - Posted {{ task.post_date }} days ago</h4>
+                                    <div class="skills" layout="row">
+                                        <span ng-repeat="skill in task.skills" class="span_skill">{{ skill }}</span>
+                                        <span ng-repeat="equipment in task.equipments" class="span_equipment">{{ equipment }}</span>
+                                    </div>
+                                    <p class="number_of_offers"> {{ task.offers }} Offers</p>
+                                </div>
+                                <div class="task_status" layout="column">
+                                    <p class="price"><i class="icon_time material-icons">access_time</i> ${{ task.price }}</p>
+                                    <p class="status_{{ task.status }}">{{ task.status }}</p>
+                                    <div class="payment_method" layout="row">
+                                        <span ng-repeat="method in task.payment" class="{{ method }}"></span>
+                                    </div>
+                                </div>
+                                <md-divider ng-if="!$last"></md-divider>
+                            </md-list-item>
+                            <md-button ng-click="close()" class="btn_round md-raised md-primary" hide-gt-md> Close List </md-button>
+                        </div>
+                    </md-content>
+                </div>
+
+            </md-content>
+
+        </md-sidenav>
+
+        <md-content flex>
+            <div class="map_area">  
+                <ng-map center="[40.74, -74.18]"></ng-map>
+            </div>
+            <md-button ng-click="toggleLeft()" class="btn_round md-raised md-primary" hide-gt-md> Show List </md-button>
+            
+            <task-detail></task-detail>
+        </md-content>
+
+
+    </section>
+
+</div>

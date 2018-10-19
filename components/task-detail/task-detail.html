@@ -1,0 +1,159 @@
+<div class="detail_info" ng-show="showDetail" >
+
+    <md-card layout="row" flex-offset="5" flex="90">
+        <div class="detail_user_image">
+            <img src="{{ taskDetail.user_photo }}">
+            <div id="user_score" class="detail_user_score" layout="row" layout-align="start center">
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 1 ? "star" : "star_border"}}</md-icon>
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 2 ? "star" : "star_border"}}</md-icon>
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 3 ? "star" : "star_border"}}</md-icon>
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 4 ? "star" : "star_border"}}</md-icon>
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 5 ? "star" : "star_border"}}</md-icon>
+            </div>
+        </div>
+        <md-card-title layout="column">
+            <md-card-title-text layout="row">
+                <div layout="column">
+                    <span class="md-headline">{{ taskDetail.title }}</span>
+                    <div layout="row" style="margin-top: 5px;">
+                        <span> Posted {{ taskDetail.post_date }} days ago by &nbsp;</span>
+                        <span><b>{{ taskDetail.username }}</b></span>
+                        <i class="detail_clock_icon icon_time material-icons">access_time</i>
+                        <div class="payment_method detail_card" layout="row">
+                            <span ng-repeat="method in taskDetail.payment" class="{{ method }}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div flex></div>
+                <md-button class="md-primary md-raised btn_round" style="height: 20px;" ng-click="closeDetail()">Complete</md-button>
+            </md-card-title-text>
+            <div layout="row">
+                <div class="task_detail_row3" layout="column" flex="33" layout-align="center center">
+                    <p class="md-subhead">Distance:</p>
+                    <p class="md-headline"><{{ taskDetail.distance }}</p>
+                </div>
+                <div class="task_detail_row3" layout="column" flex="33" layout-align="center center">
+                    <p class="md-subhead">Offers:</p>
+                    <p class="md-headline">{{ taskDetail.offers }}</p>
+                </div>
+                <div class="task_detail_row3" layout="column" flex="33" layout-align="center center">
+                    <p class="md-subhead">Budget:</p>
+                    <p class="md-headline">${{ taskDetail.price }}</p>
+                </div>
+            </div>
+            
+        </md-card-title>
+    </md-card>
+
+    <md-card layout="row" flex-offset="5" flex="90" class="hired_man">
+        <div layout="column" layout-align="center center">
+            <img src="assets/img/man2.jpeg" class="hired_man_photo">
+            <span>Piotr</span>
+            <div id="user_score" layout="row" layout-align="start center">
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 1 ? "star" : "star_border"}}</md-icon>
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 2 ? "star" : "star_border"}}</md-icon>
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 3 ? "star" : "star_border"}}</md-icon>
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 4 ? "star" : "star_border"}}</md-icon>
+                <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 5 ? "star" : "star_border"}}</md-icon>
+            </div>
+        </div>
+        <div layout="column" style="margin-left: 30px">
+            <span class="md-title">Very short note.</span>
+            <span class="span_skill">quantum physics</span>
+        </div>
+        <div flex></div>
+        <div layout="column" layout-align="start end">
+            <span class="md-headline">${{ taskDetail.price }}</span>
+            <span class="span_hired">Hired</span>
+        </div>
+    </md-card>
+
+    <md-card flex-offset="5" flex="90" layout-align="center center">
+        <p class="md-title">{{ taskDetail.position }}</p>
+    </md-card>
+
+    <md-card flex-offset="5" flex="90" layout-align="center center">
+        <p class="md-title"> Task Starts On {{ taskDetail.task_start_day }}</p>
+        <p class="md-display-1" style="margin: 0 0 20px 0;"> 6d 2h 23m 32s</p>
+    </md-card>
+
+    <md-card flex-offset="5" flex="90" layout-align="center center">
+        <p class="md-title">Task's Description</p>
+        <p>{{ taskDetail.task_description }}</p>
+    </md-card>
+
+    <md-card layout="row" flex-offset="5" flex="90"> 
+        <div layout="column" layout-align="center center" flex="50">
+            <p class="md-title skill_title" >
+                Skills Required:
+            </p>
+            <div class="skills detail_skills" layout="row">
+                <span ng-repeat="skill in taskDetail.skills" class="span_skill">{{ skill }}</span>
+            </div>
+        </div>
+        <div layout="column" layout-align="center center" flex="50">
+            <p class="md-title skill_title">
+                Equipment Needed:
+            </p>
+            <div class="skills detail_skills" layout="row">
+                <span ng-repeat="equipment in taskDetail.equipments" class="span_equipment">{{ equipment }}</span>
+            </div>
+        </div>
+    </md-card>
+ 
+    <md-card layout="row" flex-offset="5" flex="90">
+        <div flex="25" ng-repeat="url in taskDetail.image_url" class="div_room_img">
+            <img src="{{ url }}" style="width: 100%; height: 150px">
+        </div>
+    </md-card>
+
+    <md-card layout="column" flex-offset="5" flex="90" class="hired_man">
+        <div layout="row" layout-align="center center">
+            <p flex="45"></p>
+            <p class="md-title">Task's Q&A</p>
+            <p flex></p>
+            <md-button class="md-raised md-accent btn_round">Ask Question</md-button>
+        </div>
+        <div layout="row">
+            <div layout="column" layout-align="center center">
+                <img src="assets/img/man1.jpeg" class="hired_man_photo">
+                <span>Brillia</span>
+                <div id="user_score" layout="row" layout-align="start center">
+                    <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 1 ? "star" : "star_border"}}</md-icon>
+                    <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 2 ? "star" : "star_border"}}</md-icon>
+                    <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 3 ? "star" : "star_border"}}</md-icon>
+                    <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 4 ? "star" : "star_border"}}</md-icon>
+                    <md-icon md-font-set="material-icons">{{ taskDetail.user_rating >= 5 ? "star" : "star_border"}}</md-icon>
+                </div>
+            </div>
+            <div layout="column" layout-align="start end">
+                <p style="margin-left: 20px">Lorem  ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut lavoretorie dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                <span style="color: grey">4 days ago</span>
+            </div>
+        </div>
+        <md-divider></md-divider>
+
+        <div class="chat_history" layout="column">
+            
+            <div class="chat_history_item" layout="row">
+                <div flex="10"></div>
+                <div layout="column" layout-align="center center">
+                    <img src="assets/img/user3.jpeg" class="chat_man_photo">
+                    <span>Anna</span>
+                </div>
+                <p class="md-subhead message">Lorem ipsum dolor site amet?</p>
+            </div>
+            <md-divider md-inset></md-divider>
+            <div class="chat_history_item" layout="row">
+                <div flex="10"></div>
+                <div layout="column" layout-align="center center">
+                    <img src="assets/img/user4.jpeg" class="chat_man_photo">
+                    <span>Jenny</span>
+                </div>
+                <p class="md-subhead message">Yo ski yo!</p>
+            </div>
+        </div>
+    </md-card>
+
+</div>
+
