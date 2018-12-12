@@ -1,0 +1,17 @@
+{
+  "name": "taskoli",
+  "homepage": "https://github.com/CoolFullstackDev/angularjs_taskoli",
+  "authors": [
+    "CoolFullstackDev <topace1029@hotmail.com>"
+  ],
+  "description": "taskoli for employee and tasker",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
